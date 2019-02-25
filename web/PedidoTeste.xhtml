@@ -1,0 +1,78 @@
+<ui:composition template="template.xhtml"
+               xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+                
+        <ui:define name="title">
+		<h:outputText value="POO" />
+	</ui:define>
+
+	<ui:define name="principal">
+            <h1 style="text-align: center">Pedido</h1>         
+            
+            <h:outputLabel value="Produtos" style="font-size: 20px; font-weight: bold"/>
+            <h:form id="formPed">
+                
+                <p:growl id="btnfnlz" showDetail="true"/>
+                
+                <p:panelGrid style= "position: relative" columns="2">
+                    <p:outputLabel value="Numero"/>
+                    <p:inputText value="#{itempedidoMB.ped.numero}"/>
+                    <p:outputLabel value="Item"/>
+                    <p:inputText value="#{itempedidoMB.ped.itens}"/>
+                    <p:outputLabel value="Quantidade"/>
+                    <p:spinner value="#{itempedidoMB.ped.itens.size}" min="1"/>
+                </p:panelGrid>
+                
+                <p:commandButton value="Adicionar ao Carrinho"
+                                 icon="fa-cart-plus"
+                                 action="#{itempedidoMB.salvar()}"
+                                 update=":formPed"/>
+                
+                <p:outputLabel value="Finalizar" style= "font-size: 20px; font-weight: bold; position: absolute; margin-left: 70%"/>
+
+                <p:panelGrid  style= "position: relative; margin-left: 70%" columns="2" >
+                    <p:outputLabel value="ID"/>
+                    <p:inputText value="#{pedidoMB.ped.numero}"/>
+                    <p:outputLabel value="Cliente"/>
+                    <p:inputText value="#{pedidoMB.ped.itens}"/>
+                    <p:outputLabel value="Data"/>
+                    <p:calendar value="#{pedidoMB.ped.date}" /> 
+                </p:panelGrid>
+
+                <p:commandButton style="margin-left:70%"
+                                 value="Finalizar Pedido"
+                                 action="#{pedidoMB.salvar()}"
+                                 update=":formPed"
+                                 icon="fa-usd">
+                    <p:ajax update="btnfnlz" listener="#{pedidoMB.showMessage()}" />
+                </p:commandButton>
+                    
+                <p:growl id="msgs" showDetail="true"/>
+                <p:dataTable id="dataTableFunc"
+                             var="p" value="#{pedidoMB.pedidos}"
+                             editable="true"
+                             selectionMode="single"
+                             rowKey="#{p.numero}"
+                             >
+                
+                    <p:column headerText="Numero">
+                        <p:outputLabel value="#{p.numero}"/>
+                    </p:column>
+                    <p:column headerText="Item">
+                        <p:outputLabel value="#{p.itens}"/>
+                    </p:column>
+                    <p:column headerText="Quantidade">
+                        <p:outputLabel value="#{p.itens}"/>
+                    </p:column>
+
+                </p:dataTable>
+                <p:contextMenu for="dataTableFunc">
+                    <p:menuitem value="Delete" update="dataTableFunc" icon="pi pi-times" action="#{pedidoMB.deletePdd}"/>
+                </p:contextMenu>
+                
+            </h:form>                        
+            
+	</ui:define>
+</ui:composition>

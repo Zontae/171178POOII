@@ -1,0 +1,78 @@
+<ui:composition template="template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+    
+    <ui:define name="title">
+        <h:outputText value="Cadastro de Cliente"/> 
+    </ui:define>
+    
+    <ui:define name="principal">
+        <h1>Cadastro de Clientes</h1>
+        <h:form id="formClin">
+            <p:panelGrid columns="2">
+                <p:outputLabel value="Código"/>
+                <p:inputText value="#{clienteMB.cli.codigo}"/>
+                <p:outputLabel value="Nome"/>
+                <p:inputText value="#{clienteMB.cli.nome}"/>
+                <p:outputLabel value="Endereço"/>
+                <p:inputText value="#{clienteMB.cli.endereco}"/>
+                <p:outputLabel value="Telefone"/>
+                <p:inputText value="#{clienteMB.cli.telefone}"/>
+                <p:outputLabel for="formClin" value="Status" />
+                        <p:selectOneMenu value="#{clienteMB.cli.status}" style="width:125px">
+                            <f:selectItem itemLabel="Ativo" itemValue="1" />
+                            <f:selectItem itemLabel="Inativo" itemValue="2" />
+                            <f:selectItem itemLabel="Freemium" itemValue="3" />
+                            <f:selectItem itemLabel="Premium" itemValue="4" />
+                        </p:selectOneMenu>
+                <p:outputLabel value="Limite"/>
+                <p:inputText value="#{clienteMB.cli.limite}"/>
+            </p:panelGrid>
+            <p:commandButton value="Salvar"
+                             action="#{clienteMB.salvar()}"
+                             update=":formClin"/>
+            
+            <p:growl id="msgs" showDetail="true"/>
+            <p:dataTable id="dataTableFunc"
+                         var="c" value="#{clienteMB.clientes}"
+                         rows="10"
+                         paginator="true"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15"
+                         editable="true"
+                         selection="#{clienteMB.selectedClin}"
+                         selectionMode="single"
+                         rowKey="#{c.codigo}"
+                         >
+                
+                <p:column headerText="Código">
+                    <p:outputLabel value="#{c.codigo}"/>
+                </p:column>
+                <p:column headerText="Nome">
+                    <p:outputLabel value="#{c.nome}"/>
+                </p:column>
+                  <p:column headerText="Endereço">
+                      <p:outputLabel value="#{c.endereco}"/>
+                </p:column>
+                <p:column headerText="Telefone">
+                      <p:outputLabel value="#{c.telefone}"/>
+                </p:column>
+                <p:column headerText="Status">
+                    <p:outputLabel value="#{c.status}"/>
+                </p:column>
+                <p:column headerText="Limite">
+                    <p:outputLabel value="#{c.limite}"/>
+                </p:column>
+            </p:dataTable>
+            <p:contextMenu for="dataTableFunc">
+                <p:menuitem value="Delete" update="dataTableFunc" icon="pi pi-times" action="#{clienteMB.deleteCli}"/>
+            </p:contextMenu>
+        </h:form>
+    </ui:define>
+    
+    
+    
+</ui:composition>

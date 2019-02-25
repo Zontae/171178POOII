@@ -1,0 +1,110 @@
+<ui:composition template="template.xhtml"
+               xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+                
+        <ui:define name="title">
+		<h:outputText value="POO" />
+	</ui:define>
+    
+	<ui:define name="principal">
+            <h1>Produto Exportação</h1>
+            <h:form id="formPro">
+            <p:panelGrid columns="2">
+                <p:outputLabel value="Código"/>
+                <p:inputText value="#{externoMB.pro.codigo}"/>
+                <p:outputLabel value="Nome"/>
+                    <p:inputText value="#{externoMB.pro.nome}"/>
+                <p:outputLabel for="formPro" value="Categoria" />
+                <p:selectOneMenu value="#{externoMB.pro.categoria}"  converter="converterCategoria" style="width:125px" >
+                    <f:selectItems value="#{categoriaMB.categorias}" var = "cat"
+                                  itemValue="#{cat}" itemLabel="#{cat.descricao}" />
+                </p:selectOneMenu>
+               <p:outputLabel value="Preço"/>
+                    <p:inputText value="#{externoMB.pro.preco}"/>
+                    <p:outputLabel for="formPro" value="Moeda"/>
+                <p:selectOneMenu value="#{externoMB.pro.moeda}" style="width:125px">
+                        <f:selectItem itemLabel="Real" itemValue="1" />
+                        <f:selectItem itemLabel="Dólar" itemValue="2" />
+                        <f:selectItem itemLabel="Libra" itemValue="3" />
+                        <f:selectItem itemLabel="Íenes" itemValue="4" />
+                </p:selectOneMenu>
+                <p:outputLabel value="Imposto"/>
+                <p:inputText value="#{externoMB.pro.imposto}"/>
+                <p:outputLabel value="Destino"/>
+                <p:inputText value="#{externoMB.pro.destino}"/>
+            </p:panelGrid>
+            <p:commandButton value="Salvar"
+                             action="#{externoMB.salvar()}"
+                             update=":formPro"/>
+            
+            <p:growl id="msgs" showDetail="true"/>
+                <p:dataTable id="dataTableFunc"
+                             var="p" value="#{externoMB.produtos}"
+                             rows="10"
+                             paginator="true"
+                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                             rowsPerPageTemplate="5,10,15"
+                             editable="true"
+                             editMode="cell"
+                             widgetVar="cellProd"
+                             selection="#{externoMB.selectedPro}"
+                             selectionMode="single"
+                             rowKey="#{p.codigo}"
+                             >
+
+                    <f:facet name="header">
+                            Produtos Exportação
+                    </f:facet>
+
+                    <p:column headerText="Código">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{p.codigo}" /></f:facet>
+                            <f:facet name="input"><p:inputText id="modelInput" value="#{p.codigo}" style="width:96%"/></f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                    <p:column headerText="Nome">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{p.nome}" /></f:facet>
+                            <f:facet name="input"><p:inputText value="#{p.nome}" style="width:96%"/></f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                      <p:column headerText="Categoria">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{p.categoria}" /></f:facet>
+                            <f:facet name="input"><p:inputText value="#{p.categoria}" style="width:96%"/></f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                    <p:column headerText="Preço">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{p.preco}" /></f:facet>
+                            <f:facet name="input"><p:inputText value="#{p.preco}" style="width:96%"/></f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                    <p:column headerText="Moeda">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{p.moeda}" /></f:facet>
+                            <f:facet name="input"><p:inputText value="#{p.moeda}" style="width:96%"/></f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                    <p:column headerText="Imposto">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{p.imposto}" /></f:facet>
+                            <f:facet name="input"><p:inputText value="#{p.imposto}" style="width:96%"/></f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                    <p:column headerText="Destino">
+                        <p:cellEditor>
+                            <f:facet name="output"><h:outputText value="#{p.destino}" /></f:facet>
+                            <f:facet name="input"><p:inputText value="#{p.destino}" style="width:96%"/></f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                </p:dataTable>
+                <p:contextMenu for="dataTableFunc">
+                    <p:menuitem value="Delete" update="dataTableFunc" icon="pi pi-times" action="#{externoMB.deleteProd}"/>
+                </p:contextMenu>
+            </h:form>           
+	</ui:define>
+</ui:composition>
