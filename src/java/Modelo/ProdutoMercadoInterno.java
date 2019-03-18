@@ -6,7 +6,7 @@ public class ProdutoMercadoInterno extends Produto{
     private boolean incentivo;
 
     public ProdutoMercadoInterno(int codigo, String nome, Categoria categoria, double preco, int moeda, double imposto,boolean incentivo) {
-        super(codigo, nome, categoria, preco, moeda, imposto);
+        super(nome, categoria, preco, moeda, imposto);
         this.incentivo = incentivo;
     }
 

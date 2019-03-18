@@ -1,7 +1,17 @@
 
 package modelo;
 
-public class Produto {
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+public class Produto implements Serializable{
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int codigo;
     private String nome;
     private Categoria categoria;
@@ -9,8 +19,7 @@ public class Produto {
     private int moeda;
     private double imposto;
 
-    public Produto(int codigo, String nome, Categoria categoria, double preco, int moeda, double imposto) {
-        this.codigo = codigo;
+    public Produto(String nome, Categoria categoria, double preco, int moeda, double imposto) {
         this.nome = nome;
         this.categoria = categoria;
         this.preco = preco;
@@ -18,12 +27,7 @@ public class Produto {
         this.imposto = imposto;
     }
     
-    public Produto()
-    {
-        
-    }
-
-    
+    public Produto(){}
     
     public int getCodigo() {
         return codigo;

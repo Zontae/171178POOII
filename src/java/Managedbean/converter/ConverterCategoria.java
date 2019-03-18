@@ -24,7 +24,7 @@ import servico.CategoriaService;
 @FacesConverter("converterCategoria")
 public class ConverterCategoria implements Converter {
 
-	private CategoriaService servico = new CategoriaService();
+	private final CategoriaService servico = new CategoriaService();
 	
 	@Override
 	public Object getAsObject(FacesContext fc, UIComponent uic, String value) {
@@ -33,8 +33,6 @@ public class ConverterCategoria implements Converter {
 		if(value != null && !value.equals("")) {
 			e = servico.getCategoriaByDescricao(value);
 		}
-		
-		
 		
 		return e;
 	}
