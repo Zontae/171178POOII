@@ -1,19 +1,32 @@
 
 package modelo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 
-public class Cliente {
+@Entity
+@Table( name = "TBL_Cliente")
+public class Cliente implements Serializable{
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int codigo;
     private String nome;
     private String endereco;
     private String telefone;
     private int status;
     private double limite;
+    
+    @Transient
     private ArrayList pedidos;
 
-    public Cliente(int codigo, String nome, String endereco, String telefone, int status, double limite) {
-        this.codigo = codigo;
+    public Cliente(String nome, String endereco, String telefone, int status, double limite) {
         this.nome = nome;
         this.endereco = endereco;
         this.telefone = telefone;
@@ -26,10 +39,6 @@ public class Cliente {
     }
     public int getCodigo() {
         return codigo;
-    }
-
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
     }
 
     public String getNome() {

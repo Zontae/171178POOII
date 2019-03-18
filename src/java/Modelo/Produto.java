@@ -6,14 +6,18 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 
-@Entity
+//@Entity
+//@Table( name = "TBL_Produtos")
 public class Produto implements Serializable{
     
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+   // @Id
+   // @GeneratedValue(strategy = GenerationType.AUTO)
     private int codigo;
     private String nome;
+   // @Transient
     private Categoria categoria;
     private double preco;
     private int moeda;
@@ -31,10 +35,6 @@ public class Produto implements Serializable{
     
     public int getCodigo() {
         return codigo;
-    }
-
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
     }
 
     public String getNome() {

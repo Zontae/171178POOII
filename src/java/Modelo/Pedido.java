@@ -2,18 +2,30 @@
 package modelo;
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Transient;
 
 /**
  *
  * @author kevin
  */
 
-public class Pedido {
+//@Entity
+public class Pedido implements Serializable{
+    
+ //   @Id
+ //   @GeneratedValue(strategy = GenerationType.AUTO)
     private int numero;
+   // @Transient
     private Date date;
     private ArrayList<ItemPedido> itens;
+  //  @Transient
     private Cliente cliente;
     
     public double totalPedido(){
@@ -26,10 +38,6 @@ public class Pedido {
 
     public int getNumero() {
         return numero;
-    }
-
-    public void setNumero(int numero) {
-        this.numero = numero;
     }
 
     public Date getDate() {
