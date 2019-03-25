@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package managedbea;
+package managedbean;
 
 import java.util.List;
 import javax.faces.bean.ManagedBean;
@@ -21,7 +21,6 @@ public class ClienteDBMB {
     
     private ClienteDBService clientedbservice = new ClienteDBService();
     private Cliente cli = new Cliente();
-    private Cliente selectedCli;
     private int codigo;
 
     public int getCodigo() {
@@ -33,12 +32,12 @@ public class ClienteDBMB {
     }
     
     public void salvar(){
-        clientedbservice.salvar(cli);
+        clientedbservice.salvarAtualizar(cli);
         codigo = 0;
         cli = new Cliente();
     }
     
-        public List<Cliente> getClientes(){
+    public List<Cliente> getClientes(){
         return clientedbservice.getClientes();
     }
 

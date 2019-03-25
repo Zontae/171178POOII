@@ -19,11 +19,11 @@ public class ClienteDBService {
     
     private EntityManagerFactory emf;
     
-    public void ClienteService(){
+    public ClienteDBService (){
         emf = Persistence.createEntityManagerFactory("POOIIDB");
     }
 
-    public void salvar(Cliente cli) {
+    public void salvarAtualizar(Cliente cli) {
        EntityManager em = emf.createEntityManager();
        em.getTransaction().begin();
             em.merge(cli);
@@ -34,7 +34,7 @@ public class ClienteDBService {
     public List<Cliente> getClientes()
     {
         EntityManager em = emf.createEntityManager();
-        List <Cliente> clientes = em.createQuery("Select a From Cliente a").getResultList();
+        List <Cliente> clientes = em.createQuery("Select c From Cliente c").getResultList();
         em.close();
         return clientes;
     }

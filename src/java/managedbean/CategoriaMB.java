@@ -1,5 +1,5 @@
 
-package managedbea;
+package managedbean;
 
 import modelo.Categoria;
 import servico.CategoriaService;

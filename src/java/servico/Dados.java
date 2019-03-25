@@ -23,11 +23,11 @@ public class Dados {
         LISTA_CATEGORIAS = new ArrayList();
 
         
-        LISTA_CLIENTES.add(new Cliente("Zontae", "Rua Inverno", "34111137", 1, 10));
-        LISTA_CLIENTES.add(new Cliente("JamiScript", "Rua Verão", "8957417", 2, 0.10));
-        LISTA_CLIENTES.add(new Cliente("Gustov", "Rua Primavera", "95103570", 3, 15000));
-        LISTA_CLIENTES.add(new Cliente("Vinimybad", "Rua Outono", "77111992", 1, 1000));
-        LISTA_CLIENTES.add(new Cliente("Quévinho", "Rua Primavera", "156592956", 2, 180.10));
+        //LISTA_CLIENTES.add(new Cliente("Zontae", "Rua Inverno", "34111137", 1, 10));
+        //LISTA_CLIENTES.add(new Cliente("JamiScript", "Rua Verão", "8957417", 2, 0.10));
+        //LISTA_CLIENTES.add(new Cliente("Gustov", "Rua Primavera", "95103570", 3, 15000));
+        //LISTA_CLIENTES.add(new Cliente("Vinimybad", "Rua Outono", "77111992", 1, 1000));
+        //LISTA_CLIENTES.add(new Cliente("Quévinho", "Rua Primavera", "156592956", 2, 180.10));
         
         
         

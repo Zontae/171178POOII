@@ -18,6 +18,11 @@
             <file>file:/C:/Users/glauc/Documents/NetBeansProjects/TemplateProjetoFinal/web/funcionario.xhtml</file>
             <file>file:/C:/Users/glauc/Documents/NetBeansProjects/TemplateProjetoFinal/web/index.xhtml</file>
         </group>
-        <group/>
+        <group>
+            <file>file:/C:/Users/gabri/Desktop/Projetins/POOII/171178POOII/src/java/servico/ClienteDBService.java</file>
+            <file>file:/C:/Users/gabri/Desktop/Projetins/POOII/171178POOII/nbproject/build-impl.xml</file>
+            <file>file:/C:/Users/gabri/Desktop/Projetins/POOII/171178POOII/web/18032019.xhtml</file>
+            <file>file:/C:/Users/gabri/Desktop/Projetins/POOII/171178POOII/src/java/managedbea/ClienteDBMB.java</file>
+        </group>
     </open-files>
 </project-private>
