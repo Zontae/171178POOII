@@ -7,5 +7,4 @@ public enum Moeda {
     EURO,
     LIBRAS,
     IENES,
-    BERRIES
 }

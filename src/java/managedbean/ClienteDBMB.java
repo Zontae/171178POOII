@@ -23,6 +23,9 @@ public class ClienteDBMB {
     private Cliente cli = new Cliente();
     private int codigo;
 
+    public ClienteDBMB() {
+    }
+
     public int getCodigo() {
         return codigo;
     }
@@ -33,7 +36,6 @@ public class ClienteDBMB {
     
     public void salvar(){
         clientedbservice.salvarAtualizar(cli);
-        codigo = 0;
         cli = new Cliente();
     }
     
@@ -41,9 +43,6 @@ public class ClienteDBMB {
         return clientedbservice.getClientes();
     }
 
-    public Cliente getCli() {
-        return cli;
-    }
 
     public void setCli(Cliente cli) {
         this.cli = cli;
@@ -52,5 +51,31 @@ public class ClienteDBMB {
     public void pesquisarCliente(){
         cli = clientedbservice.getClienteByCodigo(codigo);
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final ClienteDBMB other = (ClienteDBMB) obj;
+        if (this.codigo != other.codigo) {
+            return false;
+        }
+        return true;
+    }
+    
+    
     
 }

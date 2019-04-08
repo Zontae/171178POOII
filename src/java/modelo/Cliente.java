@@ -8,29 +8,33 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 @Entity
-@Table( name = "TBL_Cliente")
+@Table( name = "TBL_CLIENTE")
 public class Cliente implements Serializable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int codigo;
     
-    @Column(length=50, nullable=false)
+    @Column(name="Nome", length=50, nullable=false)
     private String nome;
     
-    @Column(length=70, nullable=false)
+    @Column(name="Endereço", length=70, nullable=false)
     private String endereco;
+    
+    @Column(name="Telefone")
     private String telefone;
     
-    @Column(nullable=false)
+    @Column(name="Status", nullable=false)
     private Status status = Status.INATIVO;
+    
+    @Column(name="Limite", nullable=false)
     private double limite = 500;
     
-    @Transient
+    @OneToMany
     private ArrayList pedidos;
 
     public Cliente(String nome, String endereco, String telefone, double limite) {

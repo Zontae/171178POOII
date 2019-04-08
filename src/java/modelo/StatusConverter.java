@@ -28,7 +28,7 @@ public class StatusConverter implements AttributeConverter<Status, String> {
 			case "A": return Status.ATIVO;
 			case "I": return Status.INATIVO;
 			case "P": return Status.PREMIUM;
-                        case "": return Status.FREEMIUM; 
+                        case "F": return Status.FREEMIUM; 
 			default: throw new IllegalArgumentException("Unknown" + status);
 		}
 	}
