@@ -5,28 +5,43 @@ package modelo;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Transient;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
  * @author kevin
  */
 
-//@Entity
-public class Pedido{
+@Entity
+@Table(name="TBL_PEDIDO")
+public class Pedido implements Serializable{
     
- //   @Id
- //   @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="Codigo", nullable = false)
     private int numero;
-   // @Transient
+    
+    @Temporal(TemporalType.DATE)
+    @Column(name="Data Pedido", nullable = false)
     private Date date;
+    
+    @OneToMany(cascade=CascadeType.PERSIST)
     private ArrayList<ItemPedido> itens;
-  //  @Transient
+    
+    @ManyToOne
+    @Column(name="Cliente", nullable = false)
     private Cliente cliente;
+    
     
     public double totalPedido(){
         return 0;

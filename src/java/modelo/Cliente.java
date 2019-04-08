@@ -25,8 +25,10 @@ public class Cliente implements Serializable{
     @Column(length=70, nullable=false)
     private String endereco;
     private String telefone;
+    
+    @Column(nullable=false)
     private Status status = Status.INATIVO;
-    private double limite;
+    private double limite = 500;
     
     @Transient
     private ArrayList pedidos;

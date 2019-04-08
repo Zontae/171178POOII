@@ -19,10 +19,12 @@
             <file>file:/C:/Users/glauc/Documents/NetBeansProjects/TemplateProjetoFinal/web/index.xhtml</file>
         </group>
         <group>
-            <file>file:/C:/Users/gabri/Desktop/Projetins/POOII/171178POOII/src/java/servico/ClienteDBService.java</file>
-            <file>file:/C:/Users/gabri/Desktop/Projetins/POOII/171178POOII/nbproject/build-impl.xml</file>
-            <file>file:/C:/Users/gabri/Desktop/Projetins/POOII/171178POOII/web/18032019.xhtml</file>
-            <file>file:/C:/Users/gabri/Desktop/Projetins/POOII/171178POOII/src/java/managedbea/ClienteDBMB.java</file>
+            <file>file:/C:/Users/gabri/Desktop/Projetins/POOII/171178POOII/src/java/modelo/ProdutoExportacao.java%20-%20salvo%20pelo%20caique</file>
+            <file>file:/C:/Users/gabri/Desktop/Projetins/POOII/171178POOII/src/java/modelo/Categoria.java</file>
+            <file>file:/C:/Users/gabri/Desktop/Projetins/POOII/171178POOII/src/java/modelo/Produto.java</file>
+            <file>file:/C:/Users/gabri/Desktop/Projetins/POOII/171178POOII/src/java/modelo/Cliente.java</file>
+            <file>file:/C:/Users/gabri/Desktop/Projetins/POOII/171178POOII/src/java/modelo/ItemPedido.java</file>
+            <file>file:/C:/Users/gabri/Desktop/Projetins/POOII/171178POOII/src/java/modelo/Pedido.java</file>
         </group>
     </open-files>
 </project-private>

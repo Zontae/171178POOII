@@ -2,32 +2,50 @@
 package modelo;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import static javax.persistence.DiscriminatorType.STRING;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import static javax.persistence.InheritanceType.SINGLE_TABLE;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
-//@Entity
-//@Table( name = "TBL_Produtos")
-public class Produto{
+@Entity
+@Table( name = "TBL_Produtos")
+@Inheritance(strategy=SINGLE_TABLE)
+@DiscriminatorColumn(name="Tipo", discriminatorType=STRING, length=10)
+public class Produto implements Serializable{
     
-   // @Id
-   // @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="Codigo", nullable = false)
     private int codigo;
+    
+    @Column(length = 30, nullable = false)
     private String nome;
-   // @Transient
+    
+    @ManyToOne
+    @Column(name="Categoria", nullable = false)
     private Categoria categoria;
+    
+    @Column(name="Preço", nullable = false)
     private double preco;
-    private int moeda;
+    
+    @Column(name="Moeda", nullable = false)
+    private Moeda moeda = Moeda.REAL;
+    
+    @Column(name="Imposto", nullable = false)
     private double imposto;
 
     public Produto(String nome, Categoria categoria, double preco, int moeda, double imposto) {
         this.nome = nome;
         this.categoria = categoria;
         this.preco = preco;
-        this.moeda = moeda;
         this.imposto = imposto;
     }
     
@@ -61,11 +79,11 @@ public class Produto{
         this.preco = preco;
     }
 
-    public int getMoeda() {
+    public Moeda getMoeda() {
         return moeda;
     }
 
-    public void setMoeda(int moeda) {
+    public void setMoeda(Moeda moeda) {
         this.moeda = moeda;
     }
 

@@ -1,8 +1,16 @@
 
 package modelo;
 
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 
-public class ProdutoMercadoInterno extends Produto{
+@Entity
+@DiscriminatorValue(value="Imp")
+public class ProdutoMercadoInterno extends Produto implements Serializable{
+    
+    @Column(name="Incentivo")
     private boolean incentivo;
 
     public ProdutoMercadoInterno(String nome, Categoria categoria, double preco, int moeda, double imposto,boolean incentivo) {
@@ -14,8 +22,6 @@ public class ProdutoMercadoInterno extends Produto{
         
     }
     
-    
-
     public boolean isIncentivo() {
         return incentivo;
     }
