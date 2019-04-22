@@ -16,37 +16,39 @@ import javax.persistence.Table;
 public class Cliente implements Serializable{
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int codigo;
     
-    @Column(name="Nome", length=50, nullable=false)
+    @Column(name="Nome", length=50)
     private String nome;
     
-    @Column(name="Endereço", length=70, nullable=false)
+    @Column(name="Endereço", length=70)
     private String endereco;
     
     @Column(name="Telefone")
     private String telefone;
     
-    @Column(name="Status", nullable=false)
+    @Column(name="Status")
     private Status status = Status.INATIVO;
     
-    @Column(name="Limite", nullable=false)
+    @Column(name="Limite")
     private double limite = 500;
     
     @OneToMany
-    private ArrayList pedidos;
+    private ArrayList<Pedido> pedidos;
 
-    public Cliente(String nome, String endereco, String telefone, double limite) {
+    public Cliente(String nome, String endereco, String telefone, Status status, double limite) {
         this.nome = nome;
         this.endereco = endereco;
         this.telefone = telefone;
+        this.status = status;
         this.limite = limite;
     }
 
     public Cliente(){
         
     }
+    
     public int getCodigo() {
         return codigo;
     }
@@ -91,12 +93,16 @@ public class Cliente implements Serializable{
         this.limite = limite;
     }
 
-    public ArrayList getPedidos() {
+    public ArrayList<Pedido> getPedidos() {
         return pedidos;
     }
 
-    public void setPedidos(ArrayList pedidos) {
+    public void setPedidos(ArrayList<Pedido> pedidos) {
         this.pedidos = pedidos;
+    }
+    
+    public void addPedido(Pedido pedido){
+        this.pedidos.add(pedido);
     }
 
     @Override
@@ -122,6 +128,11 @@ public class Cliente implements Serializable{
             return false;
         }
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Cliente{" + "codigo=" + codigo + ", nome=" + nome + ", endereco=" + endereco + ", telefone=" + telefone + ", status=" + status + ", limite=" + limite + ", pedidos=" + pedidos + '}';
     }
     
     

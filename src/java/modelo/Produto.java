@@ -22,7 +22,7 @@ import javax.persistence.Table;
 public class Produto implements Serializable{
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="Codigo", nullable = false)
     private int codigo;
     

@@ -13,7 +13,7 @@ import modelo.Cliente;
 
 /**
  *
- * @author gabri
+ * @author
  */
 public class ClienteDBService {
     

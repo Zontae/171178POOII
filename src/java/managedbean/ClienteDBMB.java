@@ -13,7 +13,7 @@ import servico.ClienteDBService;
 
 /**
  *
- * @author gabri
+ * @author 
  */
 @ManagedBean
 @SessionScoped
@@ -53,12 +53,6 @@ public class ClienteDBMB {
     }
 
     @Override
-    public int hashCode() {
-        int hash = 5;
-        return hash;
-    }
-
-    @Override
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;
@@ -74,6 +68,13 @@ public class ClienteDBMB {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 37 * hash + this.codigo;
+        return hash;
     }
     
     

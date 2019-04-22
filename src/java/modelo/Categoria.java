@@ -18,23 +18,24 @@ public class Categoria implements Serializable{
     private int codigo;
     
     @Column(length = 20, nullable= false)
-    private String Categoria;
+    private String categoria;
     @Column(length = 80)
     private String descricao;
 
-    public String getCategoria() {
-        return Categoria;
-    }
-
-    public void setCategoria(String Categoria) {
-        this.Categoria = Categoria;
-    }
-
-    public Categoria(String descricao) {
+    public Categoria(String categoria, String descricao) {
+        this.categoria = categoria;
         this.descricao = descricao;
     }
 
     public Categoria() {
+    }
+    
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String Categoria) {
+        this.categoria = Categoria;
     }
 
     public int getCodigo() {

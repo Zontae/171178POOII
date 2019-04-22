@@ -3,6 +3,7 @@ package modelo;
 
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.persistence.CascadeType;
@@ -27,7 +28,7 @@ import javax.persistence.TemporalType;
 public class Pedido implements Serializable{
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="Codigo", nullable = false)
     private int numero;
     
@@ -41,7 +42,15 @@ public class Pedido implements Serializable{
     @ManyToOne
     @Column(name="Cliente", nullable = false)
     private Cliente cliente;
-    
+
+    public Pedido(Date date, ArrayList<ItemPedido> itens, Cliente cliente) {
+        this.date = date;
+        this.itens = itens;
+        this.cliente = cliente;
+    }
+
+    public Pedido() {
+    }
     
     public double totalPedido(){
         return 0;
@@ -69,6 +78,10 @@ public class Pedido implements Serializable{
 
     public void setItens(ArrayList<ItemPedido> itens) {
         this.itens = itens;
+    }
+    
+    public void addItem(ItemPedido itemPedido){
+        this.itens.add(itemPedido);
     }
 
     public Cliente getCliente() {
