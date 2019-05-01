@@ -8,12 +8,12 @@ import javax.persistence.Entity;
 
 @Entity
 @DiscriminatorValue(value="Exp")
-public class ProdutoExportacao extends Produto implements Serializable{
+public class ProdutoExterno extends Produto implements Serializable{
     
-    @Column(name="Destino", nullable=false)
+    @Column(name="Destino")
     private String destino;
 
-    public ProdutoExportacao(String nome, Categoria categoria, double preco, int moeda, double imposto,String destino) {
+    public ProdutoExterno(String nome, Categoria categoria, double preco, int moeda, double imposto,String destino) {
         super(nome, categoria, preco, moeda, imposto);
         this.destino = destino;
     }
@@ -22,7 +22,7 @@ public class ProdutoExportacao extends Produto implements Serializable{
         return destino;
     }
 
-    public ProdutoExportacao() {
+    public ProdutoExterno() {
     }
 
     public void setDestino(String destino) {

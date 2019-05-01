@@ -10,6 +10,7 @@ import modelo.ItemPedido;
 import modelo.Moeda;
 import modelo.Pedido;
 import modelo.Produto;
+import modelo.ProdutoInterno;
 import modelo.Status;
 
 /*
@@ -30,8 +31,8 @@ public class Main {
             Cliente c2 = new Cliente();
             Pedido p1 = new Pedido();
             Pedido p2 = new Pedido();
-            Produto pro1 = new Produto();
-            Produto pro2 = new Produto();
+            ProdutoInterno pro1 = new ProdutoInterno();
+            ProdutoInterno pro2 = new ProdutoInterno();
             Categoria cat1 = new Categoria();
             Categoria cat2 = new Categoria();
             ItemPedido ped1 = new ItemPedido();
@@ -56,11 +57,13 @@ public class Main {
                 pro1.setPreco(35);
                 pro1.setMoeda(Moeda.REAL);
                 pro1.setImposto(0.25);
+                pro1.setIncentivo(true);
                 pro2.setNome("Bateria 5V");
                 pro2.setCategoria(cat2);
                 pro2.setPreco(22);
                 pro2.setMoeda(Moeda.REAL);
                 pro2.setImposto(0.15);
+                pro2.setIncentivo(false);
                 System.out.println("Etapa 2 - sucesso");
             }
             catch(EntityNotFoundException e){
@@ -113,9 +116,6 @@ public class Main {
             catch(EntityNotFoundException e){
                 System.out.println("Etapa 5 - falho");
             } 
-            
-            System.out.println(c1.toString());
-            System.out.println(c2.toString());
             
             EntityManagerFactory factory = Persistence.createEntityManagerFactory("POOIIDB");
             EntityManager em = factory.createEntityManager();

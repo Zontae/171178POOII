@@ -8,17 +8,17 @@ import javax.persistence.Entity;
 
 @Entity
 @DiscriminatorValue(value="Imp")
-public class ProdutoMercadoInterno extends Produto implements Serializable{
+public class ProdutoInterno extends Produto implements Serializable{
     
     @Column(name="Incentivo")
     private boolean incentivo;
 
-    public ProdutoMercadoInterno(String nome, Categoria categoria, double preco, int moeda, double imposto,boolean incentivo) {
+    public ProdutoInterno(String nome, Categoria categoria, double preco, int moeda, double imposto,boolean incentivo) {
         super(nome, categoria, preco, moeda, imposto);
         this.incentivo = incentivo;
     }
 
-    public ProdutoMercadoInterno() {
+    public ProdutoInterno() {
         
     }
     

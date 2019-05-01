@@ -12,7 +12,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import static javax.persistence.InheritanceType.SINGLE_TABLE;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -29,8 +31,7 @@ public class Produto implements Serializable{
     @Column(length = 30, nullable = false)
     private String nome;
     
-    @ManyToOne
-    @Column(name="Categoria", nullable = false)
+    @OneToOne(cascade = CascadeType.ALL)
     private Categoria categoria;
     
     @Column(name="Preço", nullable = false)
@@ -93,6 +94,11 @@ public class Produto implements Serializable{
 
     public void setImposto(double imposto) {
         this.imposto = imposto;
+    }
+
+    @Override
+    public String toString() {
+        return "Produto{" + "codigo=" + codigo + ", nome=" + nome + ", categoria=" + categoria + ", preco=" + preco + ", moeda=" + moeda + ", imposto=" + imposto + '}';
     }
 
     

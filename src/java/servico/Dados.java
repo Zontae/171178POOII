@@ -6,7 +6,7 @@ import modelo.Categoria;
 import modelo.Cliente;
 import modelo.Pedido;
 import modelo.Produto;
-import modelo.ProdutoExportacao;
+import modelo.ProdutoExterno;
 import java.util.ArrayList;
 
 public class Dados {

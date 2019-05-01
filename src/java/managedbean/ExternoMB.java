@@ -1,7 +1,7 @@
 
 package managedbean;
 
-import modelo.ProdutoExportacao;
+import modelo.ProdutoExterno;
 import servico.ProdutoService;
 import java.util.ArrayList;
 import javax.faces.bean.ManagedBean;
@@ -12,15 +12,15 @@ import javax.faces.bean.SessionScoped;
 
 public class ExternoMB {
     private ProdutoService produtoService =  new ProdutoService();
-    private ProdutoExportacao pro = new ProdutoExportacao();
-    private ProdutoExportacao selectedPro;
+    private ProdutoExterno pro = new ProdutoExterno();
+    private ProdutoExterno selectedPro;
     
     public void salvar(){
         produtoService.salvar(pro);
-        pro = new ProdutoExportacao();
+        pro = new ProdutoExterno();
     }
 
-    public ArrayList<ProdutoExportacao> getProdutos() {
+    public ArrayList<ProdutoExterno> getProdutos() {
                 return produtoService.getProdutosExterno();
     }
 
@@ -28,19 +28,19 @@ public class ExternoMB {
         this.produtoService = produtoService;
     }
 
-    public ProdutoExportacao getPro() {
+    public ProdutoExterno getPro() {
         return pro;
     }
 
-    public void setPro(ProdutoExportacao pro) {
+    public void setPro(ProdutoExterno pro) {
         this.pro = pro;
     }
 
-    public ProdutoExportacao getSelectedPro() {
+    public ProdutoExterno getSelectedPro() {
         return selectedPro;
     }
 
-    public void setSelectedPro(ProdutoExportacao selectedPro) {
+    public void setSelectedPro(ProdutoExterno selectedPro) {
         this.selectedPro = selectedPro;
     }
     

@@ -2,8 +2,8 @@ package servico;
 
 
 import modelo.Produto;
-import modelo.ProdutoExportacao;
-import modelo.ProdutoMercadoInterno;
+import modelo.ProdutoExterno;
+import modelo.ProdutoInterno;
 import java.util.ArrayList;
 
 public class ItemPedidoService {
@@ -25,13 +25,13 @@ public class ItemPedidoService {
         listProdutos.remove(p);
     }
 
-    public ArrayList<ProdutoExportacao> getProdutosExterno() {
+    public ArrayList<ProdutoExterno> getProdutosExterno() {
     
-        ArrayList <ProdutoExportacao> aux = new ArrayList();
+        ArrayList <ProdutoExterno> aux = new ArrayList();
         for(Produto p: listProdutos)
         {
-            if(p instanceof ProdutoExportacao){
-                aux.add((ProdutoExportacao) p);
+            if(p instanceof ProdutoExterno){
+                aux.add((ProdutoExterno) p);
             }
         
         }
@@ -39,13 +39,13 @@ public class ItemPedidoService {
         return aux;
     }
     
-     public ArrayList<ProdutoMercadoInterno> getProdutosInterno() {
+     public ArrayList<ProdutoInterno> getProdutosInterno() {
     
-        ArrayList <ProdutoMercadoInterno> aux = new ArrayList();
+        ArrayList <ProdutoInterno> aux = new ArrayList();
         for(Produto p: listProdutos)
         {
-            if(p instanceof ProdutoMercadoInterno){
-                aux.add((ProdutoMercadoInterno) p);
+            if(p instanceof ProdutoInterno){
+                aux.add((ProdutoInterno) p);
             }
         
         }

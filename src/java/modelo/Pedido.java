@@ -6,14 +6,17 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -28,7 +31,7 @@ import javax.persistence.TemporalType;
 public class Pedido implements Serializable{
     
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name="Codigo", nullable = false)
     private int numero;
     
@@ -36,11 +39,11 @@ public class Pedido implements Serializable{
     @Column(name="Data Pedido", nullable = false)
     private Date date;
     
-    @OneToMany(cascade=CascadeType.PERSIST)
-    private ArrayList<ItemPedido> itens;
+    @OneToMany
+    @JoinColumn(name = "Item Pedido")
+    private List<ItemPedido> itens = new ArrayList<ItemPedido>();
     
-    @ManyToOne
-    @Column(name="Cliente", nullable = false)
+    @OneToOne(cascade = CascadeType.ALL)
     private Cliente cliente;
 
     public Pedido(Date date, ArrayList<ItemPedido> itens, Cliente cliente) {
@@ -72,7 +75,7 @@ public class Pedido implements Serializable{
         this.date = date;
     }
 
-    public ArrayList<ItemPedido> getItens() {
+    public List<ItemPedido> getItens() {
         return itens;
     }
 
@@ -94,8 +97,10 @@ public class Pedido implements Serializable{
 
     @Override
     public String toString() {
-        return "Pedido{" + "numero=" + numero + ", date=" + date + ", itens=" + itens + ", cliente=" + cliente + '}';
+        return "Pedido{" + "numero=" + numero + ", date=" + date + ", cliente=" + cliente + '}';
     }
+
+    
     
     
     

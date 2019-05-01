@@ -1,7 +1,7 @@
 
 package managedbean;
 
-import modelo.ProdutoMercadoInterno;
+import modelo.ProdutoInterno;
 import servico.ProdutoService;
 import java.util.ArrayList;
 import javax.faces.bean.ManagedBean;
@@ -12,15 +12,15 @@ import javax.faces.bean.SessionScoped;
 
 public class InternoMB {
     private ProdutoService produtoService =  new ProdutoService();
-    private ProdutoMercadoInterno pro = new ProdutoMercadoInterno();
-    private ProdutoMercadoInterno selectedPro;
+    private ProdutoInterno pro = new ProdutoInterno();
+    private ProdutoInterno selectedPro;
     
     public void salvar(){
         produtoService.salvar(pro);
-        pro = new ProdutoMercadoInterno();
+        pro = new ProdutoInterno();
     }
 
-    public ArrayList<ProdutoMercadoInterno> getProdutos() {
+    public ArrayList<ProdutoInterno> getProdutos() {
         return produtoService.getProdutosInterno();
     }
 
@@ -28,19 +28,19 @@ public class InternoMB {
         this.produtoService = produtoService;
     }
 
-    public ProdutoMercadoInterno getPro() {
+    public ProdutoInterno getPro() {
         return pro;
     }
 
-    public void setPro(ProdutoMercadoInterno pro) {
+    public void setPro(ProdutoInterno pro) {
         this.pro = pro;
     }
 
-    public ProdutoMercadoInterno getSelectedPro() {
+    public ProdutoInterno getSelectedPro() {
         return selectedPro;
     }
 
-    public void setSelectedPro(ProdutoMercadoInterno selectedPro) {
+    public void setSelectedPro(ProdutoInterno selectedPro) {
         this.selectedPro = selectedPro;
     }
 

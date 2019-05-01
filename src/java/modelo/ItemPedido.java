@@ -2,12 +2,14 @@
 package modelo;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -15,16 +17,17 @@ import javax.persistence.Table;
 public class ItemPedido implements Serializable{
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="Codigo", nullable = false)
     private int numero;
     
     @Column(name="Quantidade", nullable = false)
     private int quantidade;
     
-    @ManyToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Produto produto;
 
+    
     public int getQuantidade() {
         return quantidade;
     }
@@ -73,4 +76,10 @@ public class ItemPedido implements Serializable{
     public double totalItem(){
         return quantidade * produto.getPreco();
     }
+
+    @Override
+    public String toString() {
+        return "ItemPedido{" + "numero=" + numero + ", quantidade=" + quantidade + ", produto=" + produto + '}';
+    }
+    
 }
