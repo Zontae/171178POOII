@@ -38,7 +38,7 @@ public class Cliente implements Serializable{
     private double limite = 500;
     
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
-    @JoinColumn(name = "Numero Pedido")
+   
     private List<Pedido> pedidos = new ArrayList<Pedido>();
 
     public Cliente(String nome, String endereco, String telefone, Status status, double limite) {

@@ -27,7 +27,7 @@ import javax.persistence.TemporalType;
  */
 
 @Entity
-@Table(name="TBL_PEDIDO")
+@Table( name = "TBL_PEDIDO")
 public class Pedido implements Serializable{
     
     @Id
@@ -36,14 +36,15 @@ public class Pedido implements Serializable{
     private int numero;
     
     @Temporal(TemporalType.DATE)
-    @Column(name="Data Pedido", nullable = false)
+    @Column(name="DataPedido", nullable = false)
     private Date date;
     
     @OneToMany
-    @JoinColumn(name = "Item Pedido")
+    @JoinColumn(name = "IdPedido")
     private List<ItemPedido> itens = new ArrayList<ItemPedido>();
     
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "idcliente")
     private Cliente cliente;
 
     public Pedido(Date date, ArrayList<ItemPedido> itens, Cliente cliente) {

@@ -24,7 +24,7 @@ public class ItemPedido implements Serializable{
     @Column(name="Quantidade", nullable = false)
     private int quantidade;
     
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     private Produto produto;
 
     

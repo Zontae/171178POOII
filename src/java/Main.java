@@ -26,7 +26,8 @@ import modelo.Status;
 public class Main {
     
         public static void main(String [] args){
-            
+               EntityManagerFactory factory = Persistence.createEntityManagerFactory("POOIIDB");
+               
             Cliente c1 = new Cliente();
             Cliente c2 = new Cliente();
             Pedido p1 = new Pedido();
@@ -104,7 +105,7 @@ public class Main {
                 c1.setTelefone("62916832");
                 c1.setStatus(Status.FREEMIUM);
                 c1.setLimite(650);
-                c1.addPedido(p1);
+               
                 c2.setNome("Anna");
                 c2.setEndereco("Alander Walter 67");
                 c2.setTelefone("12943763");
@@ -117,28 +118,53 @@ public class Main {
                 System.out.println("Etapa 5 - falho");
             } 
             
-            EntityManagerFactory factory = Persistence.createEntityManagerFactory("POOIIDB");
+         
             EntityManager em = factory.createEntityManager();
             
             try{
                 em.merge(c1);
                 em.merge(c2);
-                em.merge(p1);
-                em.merge(p2);
-                em.merge(ped1);
-                em.merge(ped2);
-                em.merge(pro1);
-                em.merge(pro2);
-                em.merge(cat1);
-                em.merge(cat2);
-                System.out.println("Deu!");
+                System.out.println("Cliente Merged!");                
             }
             catch(EntityNotFoundException e){
-                System.out.println("Não deu!");
+                System.out.println("Cliente not Merged!");
+            }
+            try{
+                em.merge(p1);
+                em.merge(p2);
+                System.out.println("Pedido Merged!");                                
+            }
+            catch(EntityNotFoundException e){
+                System.out.println("Pedido not Merged!");
+            }
+            try{
+                em.merge(ped1);
+                em.merge(ped2);
+                System.out.println("ItemPedido Merged!");
+            }
+            catch(EntityNotFoundException e){
+                System.out.println("ItemPedido not Merged!");
+            }
+            try{
+                em.merge(pro1);
+                em.merge(pro2);
+                System.out.println("Produto Merged!");
+            }
+            catch(EntityNotFoundException e){
+                System.out.println("Produto not Merged!");
+            }
+            try{
+                em.merge(cat1);
+                em.merge(cat2);
+                System.out.println("Categoria Merged!");
+            }
+            catch(EntityNotFoundException e){
+                System.out.println("Categoria not Merged!");
             }
             
             em.getTransaction().begin();
             em.getTransaction().commit();
+            
             em.close();
             factory.close();
     }
