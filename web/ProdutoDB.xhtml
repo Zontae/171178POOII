@@ -1,0 +1,40 @@
+<ui:composition template="template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+    
+    <ui:define name="title">
+        <h:outputText value="Cadastro de Produto"/> 
+    </ui:define>
+    <ui:define name="principal">
+        <h1>Cadastro de Produto DB</h1>
+            
+        <h:form id="formProdDB">
+            <p:panelGrid columns="2">
+                <p:outputLabel value="Nome"/>
+                <p:inputText value="#{produtoDBMB.prod.nome}"/>
+                    <p:outputLabel value="Categoria"/>
+                    <p:inputText value="#{produtoDBMB.prod.categoria}"/>
+                    <p:outputLabel value="Preço"/>
+                    <p:spinner value="#{produtoDBMB.prod.preco}" min="0" stepFactor=".10"/>
+                    <p:outputLabel value="Moeda"/>
+                    <p:selectOneMenu value="#{produtoDBMB.prod.moeda}" style="width:125px">
+                        <f:selectItem itemLabel="Real" itemValue="R" />
+                        <f:selectItem itemLabel="Dólar" itemValue="D" />
+                        <f:selectItem itemLabel="Euro" itemValue="E" />
+                        <f:selectItem itemLabel="Libras" itemValue="L" />
+                        <f:selectItem itemLabel="Ienes" itemValue="I" />
+                    </p:selectOneMenu>
+                    <p:outputLabel value="Imposto"/>
+                    <p:spinner value="#{produtoDBMB.prod.imposto}" min="500" stepFactor="50"/>
+                    <p:outputLabel value="Tipo"/>
+                    <p:selectOneMenu value="#{produtoDBMB.from}" style="width:125px">
+                        <f:selectItem itemLabel="Externo" itemValue="E" />
+                        <f:selectItem itemLabel="Interno" itemValue="I" />
+                    </p:selectOneMenu>
+            </p:panelGrid>
+        </h:form>
+    </ui:define>
+</ui:composition>

@@ -21,9 +21,14 @@
                     <p:outputLabel value="Telefone"/>
                     <p:inputText value="#{clienteDBMB.cli.telefone}"/>
                     <p:outputLabel value="Status"/>
-                    <p:inputText value="#{clienteDBMB.cli.status}"/>
+                    <p:selectOneMenu value="#{clienteDBMB.cli.status}" style="width:125px">
+                        <f:selectItem itemLabel="Ativo" itemValue="A" />
+                        <f:selectItem itemLabel="Inativo" itemValue="I" />
+                        <f:selectItem itemLabel="Freemium" itemValue="F" />
+                        <f:selectItem itemLabel="Premium" itemValue="P" />
+                    </p:selectOneMenu>
                     <p:outputLabel value="Limite"/>
-                    <p:spinner value="#{clienteDBMB.cli.limite}" min="500" stepFactor="100"/>
+                    <p:spinner value="#{clienteDBMB.cli.limite}" min="500" stepFactor="50"/>
                 </p:panelGrid>
                 
                 <p:commandButton value="Salvar"

@@ -26,7 +26,7 @@ import modelo.Status;
 public class Main {
     
         public static void main(String [] args){
-               EntityManagerFactory factory = Persistence.createEntityManagerFactory("POOIIDB");
+            EntityManagerFactory factory = Persistence.createEntityManagerFactory("POOIIDB");
                
             Cliente c1 = new Cliente();
             Cliente c2 = new Cliente();
