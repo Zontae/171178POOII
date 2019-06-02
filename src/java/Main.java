@@ -41,10 +41,10 @@ public class Main {
             
 //--------------------------------------------------------------------
             try{
-                cat1.setCategoria("Prazer");
-                cat1.setDescricao("");
+                cat1.setCategoria("Alimentício");
+                cat1.setDescricao("Alimentício");
                 cat2.setCategoria("Eletronico");
-                cat2.setDescricao("");
+                cat2.setDescricao("Eletronico");
                 System.out.println("Etapa 1 - sucesso");
             }
             catch(EntityNotFoundException e){
@@ -167,6 +167,8 @@ public class Main {
             
             em.close();
             factory.close();
+            
+            System.out.println("Succeded Test!");
     }
         
 }

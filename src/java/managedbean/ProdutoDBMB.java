@@ -52,7 +52,8 @@ public class ProdutoDBMB {
     }
     
     public void salvar(){
-        produtodbservice.salvarAtualizar(prod);
+        produtodbservice.salvarAtualizar(prod, from);
+   
         prod = new Produto();
     }
     
@@ -62,6 +63,10 @@ public class ProdutoDBMB {
     
     public void pesquisarProduto(){
         prod = produtodbservice.getProdutoByCodigo(codigo);
+    }
+    
+    public String produtoPorCodigo (int codigo){
+       return produtodbservice.getOriginByCode(codigo);
     }
 
     @Override
@@ -88,6 +93,4 @@ public class ProdutoDBMB {
         }
         return true;
     }
-    
-    
 }

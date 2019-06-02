@@ -1,4 +1,4 @@
-<ui:composition template="template.xhtml"
+<ui:composition template="templateDB.xhtml"
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
@@ -28,13 +28,52 @@
                         <f:selectItem itemLabel="Ienes" itemValue="I" />
                     </p:selectOneMenu>
                     <p:outputLabel value="Imposto"/>
-                    <p:spinner value="#{produtoDBMB.prod.imposto}" min="500" stepFactor="50"/>
+                    <p:spinner value="#{produtoDBMB.prod.imposto}" min="0" stepFactor=".1"/>
                     <p:outputLabel value="Tipo"/>
                     <p:selectOneMenu value="#{produtoDBMB.from}" style="width:125px">
-                        <f:selectItem itemLabel="Externo" itemValue="E" />
-                        <f:selectItem itemLabel="Interno" itemValue="I" />
+                        <f:selectItem itemLabel="Externo" itemValue="1" />
+                        <f:selectItem itemLabel="Interno" itemValue="2" />
                     </p:selectOneMenu>
             </p:panelGrid>
+            <p:commandButton value="Salvar"
+                             action="#{produtoDBMB.salvar()}"
+                             update=":formProdDB"/>
+            <p:inputText value="#{produtoDBMB.codigo}"/>
+            <p:commandButton value="Pesquisar"
+                             action="#{produtoDBMB.pesquisarProduto()}"
+                             update=":formProdDB"/>
+            
+            <p:dataTable var ="prod" value="#{produtoDBMB.produtos}">
+
+                    <p:column headerText="Codigo" >
+                        <p:outputLabel value="#{prod.codigo}"/>
+                    </p:column>
+
+                    <p:column headerText="Nome" >
+                        <p:outputLabel value="#{prod.nome}"/>
+                    </p:column>
+
+                    <p:column headerText="Categoria" >
+                        <p:outputLabel value="#{prod.categoria}"/>
+                    </p:column>
+
+                    <p:column headerText="Preco" >
+                        <p:outputLabel value="#{prod.preco}"/>
+                    </p:column>
+
+                    <p:column headerText="Moeda" >
+                        <p:outputLabel value="#{prod.moeda}"/>
+                    </p:column>
+
+                    <p:column headerText="Imposto" >
+                        <p:outputLabel value="#{prod.imposto}"/>
+                    </p:column>
+            
+                    <p:column headerText="Origem" >
+                        <p:outputLabel value="#{produtoDBMB.produtoPorCodigo(prod.codigo)}"/>
+                    </p:column>
+
+            </p:dataTable>                
         </h:form>
     </ui:define>
 </ui:composition>

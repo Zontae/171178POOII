@@ -1,4 +1,4 @@
-/*
+
 package modelo;
 
 import javax.persistence.AttributeConverter;
@@ -6,7 +6,7 @@ import javax.persistence.Converter;
 
 //Conversão automotica do tipo pelo JPA, nao e necessario usar @Convert nas entidades.
 @Converter(autoApply=true)						  
-public class MoedaConverter implements AttributeConverter<Status, String> {
+public class MoedaConverter implements AttributeConverter<Moeda, String> {
 
 	@Override
 	public String convertToDatabaseColumn(Moeda moeda) 
@@ -16,8 +16,8 @@ public class MoedaConverter implements AttributeConverter<Status, String> {
 			case REAL: 	    return "R"; 
 			case DÓLAR: 	    return "D"; 
 			case EURO:	    return "E"; 
-                        case LIBRAS:         return "L";
-                        case IENES:          return "I";
+                        case LIBRAS:        return "L";
+                        case IENES:         return "I";
 			default: throw new IllegalArgumentException("Unknown" + moeda);
 		}
 	}
@@ -35,6 +35,4 @@ public class MoedaConverter implements AttributeConverter<Status, String> {
 			default: throw new IllegalArgumentException("Unknown" + moeda);
 		}
 	}
-
 }
-*/
