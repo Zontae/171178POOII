@@ -32,7 +32,17 @@
                              action="#{categoriaDBMB.pesquisarCategoria()}"
                              update=":formCat"/>
 
-            <p:dataTable var="cat" value="#{categoriaDBMB.categorias}" >
+            <p:dataTable id="formCat"
+                         var="cat" value="#{categoriaDBMB.categorias}"
+                         rows="5"
+                         paginator="true"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15"
+                         editable="true"
+                         selection="#{categoriaDBMB.selectedCat}"
+                         selectionMode="single"
+                         rowKey="#{cat.descricao}"
+                         >
                     
                     <p:column headerText="Codigo" >
                         <p:outputLabel value="#{cat.codigo}"/>

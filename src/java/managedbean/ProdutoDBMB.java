@@ -21,9 +21,18 @@ public class ProdutoDBMB {
     
     private ProdutoDBService produtodbservice = new ProdutoDBService();
     private Produto prod = new Produto();
+    private Produto selectedProd;
     private int codigo;
     private int from;
 
+    public Produto getSelectedProd() {
+        return selectedProd;
+    }
+
+    public void setSelectProd(Produto selectProd) {
+        this.selectedProd = selectProd;
+    }
+    
     public ProdutoDBMB(){
     }
     

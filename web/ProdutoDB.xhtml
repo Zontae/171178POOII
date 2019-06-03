@@ -43,7 +43,17 @@
                              action="#{produtoDBMB.pesquisarProduto()}"
                              update=":formProdDB"/>
             
-            <p:dataTable var ="prod" value="#{produtoDBMB.produtos}">
+            <p:dataTable id="formProdDB"
+                         var="prod" value="#{produtoDBMB.produtos}"
+                         rows="5"
+                         paginator="true"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15"
+                         editable="true"
+                         selection="#{produtoDBMB.selectedProd}"
+                         selectionMode="single"
+                         rowKey="#{cat.descricao}"
+                         >
 
                     <p:column headerText="Codigo" >
                         <p:outputLabel value="#{prod.codigo}"/>

@@ -17,7 +17,6 @@ public class PedidoDBMB {
    private PedidoDBService pedidodbservice = new PedidoDBService();
    private ArrayList<Produto> pedido;
    private Pedido ped = new Pedido();
-   private 
    
    public void salvar(){
        pedidodbservice.salvarAtualizar(ped);

@@ -41,7 +41,17 @@
                                  action="#{clienteDBMB.pesquisarCliente()}" 
                                  update=":formCliDB"/>
                 
-                <p:dataTable var="cli" value="#{clienteDBMB.clientes}" >
+                <p:dataTable id="formCliDB"
+                             var="cli" value="#{clienteDBMB.clientes}"
+                            rows="5"
+                            paginator="true"
+                            paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                            rowsPerPageTemplate="5,10,15"
+                            editable="true"
+                            selection="#{clienteDBMB.clientes}"
+                            selectionMode="single"
+                            rowKey="#{cli.nome}"
+                            >
 
                     <p:column headerText="Codigo" >
                         <p:outputLabel value="#{cli.codigo}"/>
