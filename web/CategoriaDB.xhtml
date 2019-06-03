@@ -25,37 +25,29 @@
             <p:commandButton value="Salvar"
                              action="#{categoriaMB.salvar()}"
                              update=":formCat"/>
+            
             <p:inputText value="#{categoriaDBMB.catCode}"/>
+            
             <p:commandButton value="Pesquisar"
                              action="#{categoriaDBMB.pesquisarCategoria()}"
                              update=":formCat"/>
-            
-            <p:growl id="msgs" showDetail="true"/>
-            <p:dataTable id="dataTableFunc"
-                         var="c" value="#{categoriaDBMB.categorias}"
-                         rows="10"
-                         paginator="true"
-                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                         rowsPerPageTemplate="5,10,15"
-                         editable="true"
-                         selection="#{categoriaDBMB.selectedCat}"
-                         selectionMode="single"
-                         rowKey="#{c.codigo}"
-                         >
+
+            <p:dataTable var="cat" value="#{categoriaDBMB.categorias}" >
+                    
+                    <p:column headerText="Codigo" >
+                        <p:outputLabel value="#{cat.codigo}"/>
+                    </p:column>
+
+                    <p:column headerText="Categoria" >
+                        <p:outputLabel value="#{cat.categoria}"/>
+                    </p:column>
+
+                    <p:column headerText="Descrição" >
+                        <p:outputLabel value="#{cat.descricao}"/>
+                    </p:column>
+                    
+                </p:dataTable>
                 
-                <p:column headerText="Codigo">
-                    <p:outputLabel value="#{c.codigo}"/>
-                </p:column>
-                <p:column headerText="Categoria">
-                    <p:outputLabel value="#{c.categoria}"/>
-                </p:column>
-                <p:column headerText="Descrição">
-                    <p:outputLabel value="#{c.descricao}"/>
-                </p:column>
-            </p:dataTable>
-<!--            <p:contextMenu for="dataTableFunc">
-                <p:menuitem value="Delete" update="dataTableFunc" icon="pi pi-times" action="#{categoriaDBMB.deleteCatg}"/>
-            </p:contextMenu>-->
         </h:form>
     </ui:define>
     

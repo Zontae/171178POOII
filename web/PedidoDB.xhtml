@@ -1,0 +1,74 @@
+<ui:composition template="templateDB.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+    
+    <ui:define name="title">
+        <h:outputText value="Cadastro de Cliente"/> 
+    </ui:define>
+    
+    <ui:define name="principal">
+        <h1>Pedido</h1>
+      
+            <h:form id="formCliDB">
+                <p:panelGrid columns="2">
+                    <p:outputLabel value="Cliente"/>
+                    <p:inputText value=""/>
+                    <p:outputLabel value="Endereço"/>
+                    <p:inputText value="#{clienteDBMB.cli.endereco}"/>
+                    <p:outputLabel value="Telefone"/>
+                    <p:inputText value="#{clienteDBMB.cli.telefone}"/>
+                    <p:outputLabel value="Status"/>
+                    <p:selectOneMenu value="#{clienteDBMB.cli.status}" style="width:125px">
+                        <f:selectItem itemLabel="Ativo" itemValue="A" />
+                        <f:selectItem itemLabel="Inativo" itemValue="I" />
+                        <f:selectItem itemLabel="Freemium" itemValue="F" />
+                        <f:selectItem itemLabel="Premium" itemValue="P" />
+                    </p:selectOneMenu>
+                    <p:outputLabel value="Limite"/>
+                    <p:spinner value="#{clienteDBMB.cli.limite}" min="500" stepFactor="50"/>
+                </p:panelGrid>
+                
+                <p:commandButton value="Salvar"
+                                 action="#{clienteDBMB.salvar()}"
+                                 update=":formCliDB"/>
+                
+                <p:inputText value="#{clienteDBMB.codigo}" />
+                
+                <p:commandButton value="Pesquisa"  
+                                 action="#{clienteDBMB.pesquisarCliente()}" 
+                                 update=":formCliDB"/>
+                
+                <p:dataTable var="cli" value="#{clienteDBMB.clientes}" >
+
+                    <p:column headerText="Codigo" >
+                        <p:outputLabel value="#{cli.codigo}"/>
+                    </p:column>
+
+                    <p:column headerText="Nome" >
+                        <p:outputLabel value="#{cli.nome}"/>
+                    </p:column>
+
+                    <p:column headerText="Endereço" >
+                        <p:outputLabel value="#{cli.endereco}"/>
+                    </p:column>
+
+                    <p:column headerText="Telefone" >
+                        <p:outputLabel value="#{cli.telefone}"/>
+                    </p:column>
+
+                    <p:column headerText="Status" >
+                        <p:outputLabel value="#{cli.status}"/>
+                    </p:column>
+
+                    <p:column headerText="Limite" >
+                        <p:outputLabel value="#{cli.limite}"/>
+                    </p:column>
+
+                </p:dataTable>
+            </h:form>       
+    </ui:define>
+    
+</ui:composition>
