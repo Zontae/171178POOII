@@ -36,7 +36,8 @@ public class ProdutoDBService {
     public Produto getProdutoByCodigo(int codigo)
     {
             EntityManager em = emf.createEntityManager();
-            Produto p = em.find(Produto.class, codigo);
+            //Produto p = (Produto) em.find(Produto.class, codigo);
+            Produto p = (Produto) em.createQuery("Select p From Produto p Where p.codigo = :prodCode").setParameter("prodCode", codigo).getSingleResult();
             em.close();
             System.out.println("servico.ProdutoDBService.getProdutoByCodigo()" + p.getCodigo());
             return p;
