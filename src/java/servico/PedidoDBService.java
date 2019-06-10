@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import modelo.Cliente;
 import modelo.Pedido;
 
 
@@ -36,4 +37,6 @@ public class PedidoDBService {
             //System.out.println("servico.PedidoDBService.getPedidoByCodigo()" + cat.getCodigo());
             return ped;
     }
+
+
 }

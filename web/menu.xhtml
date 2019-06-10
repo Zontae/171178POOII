@@ -26,10 +26,14 @@
                             <p:separator/>
                             <p:menuitem value="Help"></p:menuitem>
                     </p:submenu>
-                <p:submenu label="DB Menu">
-                    <p:menuitem value="Cliente" url="/faces/ClienteDB.xhtml"></p:menuitem>
-                    <p:menuitem value="Produto" url="/faces/ProdutoDB.xhtml"></p:menuitem>
-                    <p:menuitem value="Categoria" url="/faces/CategoriaDB.xhtml"></p:menuitem>
+                <p:submenu label="Menu DB">
+                    <p:submenu label="Cadastro">
+                        <p:menuitem value="Cliente" url="/faces/ClienteDB.xhtml"></p:menuitem>
+                        <p:menuitem value="Produto" url="/faces/ProdutoDB.xhtml"></p:menuitem>
+                        <p:separator/>
+                        <p:menuitem value="Categoria" url="/faces/CategoriaDB.xhtml"></p:menuitem>
+                    </p:submenu>
+                    <p:menuitem value="Pedido" url="/faces/PedidoDB.xhtml"></p:menuitem>
                 </p:submenu>
                 <p:menuitem value="Teste Pedido" url="/faces/PedidoTeste.xhtml"/>
             </p:menubar>

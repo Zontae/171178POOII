@@ -46,14 +46,26 @@ public class Pedido implements Serializable{
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idcliente")
     private Cliente cliente;
+    
+    @Column(name="Total", nullable = false)
+    private double total;
 
-    public Pedido(Date date, ArrayList<ItemPedido> itens, Cliente cliente) {
+    public Pedido(Date date, ArrayList<ItemPedido> itens, Cliente cliente, double total) {
         this.date = date;
         this.itens = itens;
         this.cliente = cliente;
+        this.total = total;
     }
 
     public Pedido() {
+    }
+
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
     }
     
     public double totalPedido(){

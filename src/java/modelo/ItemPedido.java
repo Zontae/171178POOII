@@ -26,7 +26,17 @@ public class ItemPedido implements Serializable{
     
     @ManyToOne(cascade = CascadeType.ALL)
     private Produto produto;
+    
+    @Column(name="PrecoTotalItem", nullable = false)
+    private double total;
 
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
+    }
     
     public int getQuantidade() {
         return quantidade;

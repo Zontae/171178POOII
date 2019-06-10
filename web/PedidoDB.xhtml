@@ -12,63 +12,52 @@
     <ui:define name="principal">
         <h1>Pedido</h1>
       
-            <h:form id="formCliDB">
+            <h:form id="formPedDB">
                 <p:panelGrid columns="2">
                     <p:outputLabel value="Cliente"/>
-                    <p:inputText value=""/>
-                    <p:outputLabel value="Endereço"/>
-                    <p:inputText value="#{clienteDBMB.cli.endereco}"/>
-                    <p:outputLabel value="Telefone"/>
-                    <p:inputText value="#{clienteDBMB.cli.telefone}"/>
-                    <p:outputLabel value="Status"/>
-                    <p:selectOneMenu value="#{clienteDBMB.cli.status}" style="width:125px">
-                        <f:selectItem itemLabel="Ativo" itemValue="A" />
-                        <f:selectItem itemLabel="Inativo" itemValue="I" />
-                        <f:selectItem itemLabel="Freemium" itemValue="F" />
-                        <f:selectItem itemLabel="Premium" itemValue="P" />
+                    <p:selectOneMenu value="#{pedidoDBMB.cli}" style="width:125px">
+                        <f:selectItem itemValue="" itemLabel="Cliente"/>
+                        <f:selectItems value="#{pedidoDBMB.clientes}" var="ccli" itemLabel="#{ccli.nome}" itemValue="#{ccli}"/>
                     </p:selectOneMenu>
-                    <p:outputLabel value="Limite"/>
-                    <p:spinner value="#{clienteDBMB.cli.limite}" min="500" stepFactor="50"/>
+                    <p:outputLabel value="Produto"/>
+                    <p:selectOneMenu value="#{pedidoDBMB.prod}" style="width:125px">
+                        <f:selectItem itemValue="" itemLabel="Produto"/>
+                        <f:selectItems value="#{pedidoDBMB.produto}" var="pprod" itemLabel="#{pprod.nome}" itemValue="#{pprod}"/>
+                    </p:selectOneMenu>
+                    <br/>
+                    <p:outputLabel value="#{prod.preco}"/>
                 </p:panelGrid>
                 
-                <p:commandButton value="Salvar"
-                                 action="#{clienteDBMB.salvar()}"
-                                 update=":formCliDB"/>
+                <p:commandButton value="Adicionar ao carrinho"
+                                 action="#{pedidoDBMB.addProduto(prod)}"
+                                 update=":formPedDB"/>
                 
-                <p:inputText value="#{clienteDBMB.codigo}" />
+                <p:commandButton value="Finalizar Compra"  
+                                 action="#{pedidoDBMB.finalizarCompra(cli)}" 
+                                 update=":formPedDB"/>
                 
-                <p:commandButton value="Pesquisa"  
-                                 action="#{clienteDBMB.pesquisarCliente()}" 
-                                 update=":formCliDB"/>
-                
-                <p:dataTable var="cli" value="#{clienteDBMB.clientes}" >
+                <p:dataTable id="formPedDB" var="prods" value="#{pedidoDBMB.pedido}" >
 
                     <p:column headerText="Codigo" >
-                        <p:outputLabel value="#{cli.codigo}"/>
+                        <p:outputLabel value="#{prods.codigo}"/>
                     </p:column>
 
                     <p:column headerText="Nome" >
-                        <p:outputLabel value="#{cli.nome}"/>
+                        <p:outputLabel value="#{prods.nome}"/>
                     </p:column>
 
-                    <p:column headerText="Endereço" >
-                        <p:outputLabel value="#{cli.endereco}"/>
+                    <p:column headerText="Categoria" >
+                        <p:outputLabel value="#{prods.categoria}"/>
                     </p:column>
 
-                    <p:column headerText="Telefone" >
-                        <p:outputLabel value="#{cli.telefone}"/>
+                    <p:column headerText="Preco" >
+                        <p:outputLabel value="#{prods.preco}"/>
                     </p:column>
 
-                    <p:column headerText="Status" >
-                        <p:outputLabel value="#{cli.status}"/>
+                    <p:column headerText="Moeda" >
+                        <p:outputLabel value="#{prods.moeda}"/>
                     </p:column>
-
-                    <p:column headerText="Limite" >
-                        <p:outputLabel value="#{cli.limite}"/>
-                    </p:column>
-
                 </p:dataTable>
             </h:form>       
     </ui:define>
-    
 </ui:composition>

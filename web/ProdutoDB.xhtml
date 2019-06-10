@@ -52,7 +52,7 @@
                          editable="true"
                          selection="#{produtoDBMB.selectedProd}"
                          selectionMode="single"
-                         rowKey="#{cat.descricao}"
+                         rowKey="#{prod.nome}"
                          >
 
                     <p:column headerText="Codigo" >
@@ -64,7 +64,7 @@
                     </p:column>
 
                     <p:column headerText="Categoria" >
-                        <p:outputLabel value="#{prod.categoria}"/>
+                        <p:outputLabel value="#{prod.categoria.categoria}"/>
                     </p:column>
 
                     <p:column headerText="Preco" >
