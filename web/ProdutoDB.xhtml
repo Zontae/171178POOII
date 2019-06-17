@@ -1,0 +1,108 @@
+<ui:composition template="templateDB.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+    
+    <ui:define name="title">
+        <h:outputText value="Cadastro de Produto"/> 
+    </ui:define>
+    <ui:define name="principal">
+        <h1>Cadastro de Produto DB</h1>
+            
+        <h:form id="formProdDB">
+            <p:panelGrid columns="2">
+                <p:outputLabel value="Nome"/>
+                <p:inputText value="#{produtoDBMB.prod.nome}"/>
+                    <p:outputLabel value="Categoria"/>
+                    <p:selectOneMenu id="Cat" value="#{produtoDBMB.prod.categoria}" converter="converterCategoria">
+                        <f:selectItems value="#{categoriaDBMB.categorias}"/>
+                    </p:selectOneMenu>
+                    <p:outputLabel value="Preço"/>
+                    <p:spinner value="#{produtoDBMB.prod.preco}" min="0" stepFactor=".10"/>
+                    <p:outputLabel value="Moeda"/>
+                    <p:spinner value="#{produtoDBMB.prod.moeda}" min="0" max="5" stepFactor="1"/>
+                    <p:outputLabel value="Imposto"/>
+                    <p:spinner value="#{produtoDBMB.prod.imposto}" min="0" stepFactor=".1"/>
+                    <p:outputLabel value="Tipo"/>
+                    <p:selectOneRadio id="Mercado" value="#{produtoDBMB.mercado}">
+                        <p:ajax update="@form" process="@form"/>
+                        <f:selectItem itemLabel="Interno" itemValue="interno"/>
+                        <f:selectItem itemLabel="Externo" itemValue="externo"/>
+                    </p:selectOneRadio>
+                    
+                    <p:outputLabel for="interno" value="Incentivo" rendered="#{produtoDBMB.mercado == 'interno'}"/>
+                    <p:selectBooleanButton id="interno" value="#{produtoDBMB.incentivo}" onLabel="Sim" offLabel="Não" rendered="#{produtoDBMB.mercado == 'interno'}"/>
+                    
+                    <p:outputLabel for="externo" value="Destino" rendered="#{produtoDBMB.mercado == 'externo'}"/>
+                    <p:inputText id="externo" value="#{produtoDBMB.destino}" rendered="#{produtoDBMB.mercado == 'externo'}"/>
+            </p:panelGrid>
+            <p:commandButton value="Salvar"
+                             action="#{produtoDBMB.salvar()}"
+                             update=":formProdDB"/>
+            <p:inputText value="#{produtoDBMB.codigo}"/>
+            <p:commandButton value="Pesquisar"
+                             action="#{produtoDBMB.pesquisarProduto()}"
+                             update=":formProdDB"/>
+            
+            <p:dataTable id="formProdDB"
+                         var="prod" value="#{produtoDBMB.produtos}"
+                         rows="5"
+                         paginator="true"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15"
+                         editable="true"
+                         selection="#{produtoDBMB.selectedProd}"
+                         selectionMode="single"
+                         rowKey="#{prod.nome}"
+                         >
+                
+                <p:ajax event="rowEdit" listener="#{produtoDBMB.onRowEdit}" update=":formProdDB"/>
+
+                    <p:column headerText="Codigo" >
+                        <p:outputLabel value="#{prod.codigo}"/>
+                    </p:column>
+
+                    <p:column headerText="Nome" filterBy="#{prod.nome}">
+                        <p:cellEditor>
+                            <f:facet name="output"><p:outputLabel value="#{prod.nome}"/></f:facet>
+                            <f:facet name="input"><p:inputText value="#{prod.nome}" label="Categoria"/></f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="Categoria" >
+                        <p:cellEditor>
+                            <f:facet name="output"><p:outputLabel value="#{prod.categoria}"/></f:facet>
+                            <f:facet name="input">
+                                <p:selectOneMenu value="#{prod.categoria}" converter="converterCategoria">
+                                    <f:selectItems value="#{categoriaDBMB}"/>
+                                </p:selectOneMenu>
+                            </f:facet>
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="Preco" >
+                        <p:cellEditor>
+                            <f:facet name="output"><p:outputLabel value="#{prod.preco}"/></f:facet>
+                            <f:facet name="input"><p:inputText value="#{prod.preco}" label="Categoria"/></f:facet>
+                        </p:cellEditor>
+                    </p:column>
+                    <p:column style="width: 24px">
+                        <p:rowEditor/>
+                    </p:column>
+                    <p:column style="width: 24px">
+                        <p:commandLink styleClass="ui-icon ui-icon-trash"
+                                       actionListener="#{produtoDBMB.deletar()}"
+                                       update="formProdDB"/>
+                    </p:column>
+            </p:dataTable> 
+            <p:contextMenu for="formProdDB">
+                <p:menuitem value="Remove"
+                            update="formProdDB"
+                            icon="ui-icon-close"
+                            actionListener="#{produtoDBMB.deletar()}"/>
+            </p:contextMenu>
+        </h:form>
+    </ui:define>
+</ui:composition>

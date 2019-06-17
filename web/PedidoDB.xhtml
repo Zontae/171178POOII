@@ -1,0 +1,65 @@
+<ui:composition template="templateDB.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+    
+    <ui:define name="title">
+        <h:outputText value="Cadastro de Cliente"/> 
+    </ui:define>
+    
+    <ui:define name="principal">
+        <h1>Pedido</h1>
+      
+            <h:form id="formPedDB">
+                <p:panelGrid columns="2">
+                    <p:outputLabel value="Cliente"/>
+                    <p:selectOneMenu value="#{pedidoDBMB.cli}" converter="converterCliente" style="width:125px">
+                        <f:selectItem itemValue="" itemLabel="Cliente"/>
+                        <f:selectItems value="#{pedidoDBMB.clientes}" var="ccli" itemLabel="#{ccli.nome}" itemValue="#{ccli}"/>
+                    </p:selectOneMenu>
+                    <p:outputLabel value="Produto"/>
+                    <p:selectOneMenu value="#{pedidoDBMB.prod}" converter="converterProduto" style="width:125px">
+                        <p:ajax update="@form" process="@form"/>
+                        <f:selectItem itemValue="" itemLabel="Produto"/>
+                        <f:selectItems value="#{pedidoDBMB.produto}" var="pprod" itemLabel="#{pprod.nome}" itemValue="#{pprod}"/>
+                    </p:selectOneMenu>
+                    <p:outputLabel value="Produto valor:"/>
+                    <p:outputLabel value="#{pprod.preco}" rendered="#{pedidoDBMB.prod != null}"/>
+                    <p:columnGroup>
+                        <p:commandButton value="Adicionar ao carrinho"
+                                 action="#{pedidoDBMB.addProduto(prod)}"
+                                 update=":formPedDB"/>
+                
+                        <p:commandButton value="Finalizar Compra"  
+                                 action="#{pedidoDBMB.finalizarCompra(cli)}" 
+                                 update=":formPedDB"/>
+                    </p:columnGroup>
+                </p:panelGrid>
+                
+                <p:dataTable id="formPedDB" var="prods" value="#{pedidoDBMB.pedido}" >
+
+                    <p:column headerText="Codigo" >
+                        <p:outputLabel value="#{prods.codigo}"/>
+                    </p:column>
+
+                    <p:column headerText="Nome" >
+                        <p:outputLabel value="#{prods.nome}"/>
+                    </p:column>
+
+                    <p:column headerText="Categoria" >
+                        <p:outputLabel value="#{prods.categoria}"/>
+                    </p:column>
+
+                    <p:column headerText="Preco" >
+                        <p:outputLabel value="#{prods.preco}"/>
+                    </p:column>
+
+                    <p:column headerText="Moeda" >
+                        <p:outputLabel value="#{prods.moeda}"/>
+                    </p:column>
+                </p:dataTable>
+            </h:form>       
+    </ui:define>
+</ui:composition>

@@ -1,0 +1,79 @@
+<ui:composition template="templateDB.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+    
+    <ui:define name="title">
+        <h:outputText value="Cadastro de Cliente"/> 
+    </ui:define>
+    
+    <ui:define name="principal">
+        <h1>Cadastro de Clientes DB</h1>
+      
+            <h:form id="formCliDB">
+                <p:panelGrid columns="2">
+                    <p:outputLabel value="Nome"/>
+                    <p:inputText value="#{clienteDBMB.cli.nome}"/>
+                    <p:outputLabel value="Endereço"/>
+                    <p:inputText value="#{clienteDBMB.cli.endereco}"/>
+                    <p:outputLabel value="Telefone"/>
+                    <p:inputText value="#{clienteDBMB.cli.telefone}"/>
+                    <p:outputLabel value="Status"/>
+                    <p:spinner value="#{clienteDBMB.cli.status}" min="0" max="3" stepFactor="1"/>
+                    <p:outputLabel value="Limite"/>
+                    <p:spinner value="#{clienteDBMB.cli.limite}" min="500" stepFactor="50"/>
+                </p:panelGrid>
+                
+                <p:commandButton value="Salvar"
+                                 action="#{clienteDBMB.salvar()}"
+                                 update=":formCliDB"/>
+                
+                <p:inputText value="#{clienteDBMB.codigo}" />
+                
+                <p:commandButton value="Pesquisa"  
+                                 action="#{clienteDBMB.pesquisarCliente()}" 
+                                 update=":formCliDB"/>
+                
+                <p:dataTable id="formCliDB"
+                             var="cli" value="#{clienteDBMB.clientes}"
+                            rows="5"
+                            paginator="true"
+                            paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                            rowsPerPageTemplate="5,10,15"
+                            editable="true"
+                            selection="#{clienteDBMB.cli}"
+                            selectionMode="single"
+                            rowKey="#{cli.nome}"
+                            >
+
+                    <p:column headerText="Codigo" >
+                        <p:outputLabel value="#{cli.codigo}"/>
+                    </p:column>
+
+                    <p:column headerText="Nome" >
+                        <p:outputLabel value="#{cli.nome}"/>
+                    </p:column>
+
+                    <p:column headerText="Endereço" >
+                        <p:outputLabel value="#{cli.endereco}"/>
+                    </p:column>
+
+                    <p:column headerText="Telefone" >
+                        <p:outputLabel value="#{cli.telefone}"/>
+                    </p:column>
+
+                    <p:column headerText="Status" >
+                        <p:outputLabel value="#{cli.status}"/>
+                    </p:column>
+
+                    <p:column headerText="Limite" >
+                        <p:outputLabel value="#{cli.limite}"/>
+                    </p:column>
+
+                </p:dataTable>
+            </h:form>       
+    </ui:define>
+    
+</ui:composition>
